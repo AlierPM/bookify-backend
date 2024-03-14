@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_14_093004) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_14_155721) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_093004) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "rental_requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_rental_requests_on_book_id"
+    t.index ["user_id"], name: "index_rental_requests_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -61,4 +73,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_093004) do
   add_foreign_key "books", "users"
   add_foreign_key "favorites", "books"
   add_foreign_key "favorites", "users"
+  add_foreign_key "rental_requests", "books"
+  add_foreign_key "rental_requests", "users"
 end
