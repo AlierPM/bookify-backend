@@ -18,7 +18,7 @@ class Api::V1::FavoritesController < ApplicationController
     @favorite = Favorite.new(favorite_params)
 
     if @favorite.save
-      render json: { message: 'Favorite created successfully', data: @favorite }, status: :created, location: api_v1_favorite_url(@favorite)
+      render json: { message: 'Favorite created successfully', data: @favorite }, status: :created, location: api_v1_user_favorite_url(@favorite.user, @favorite)
     else
       render json: { message: 'Failed to create favorite', errors: @favorite.errors }, status: :unprocessable_entity
     end
