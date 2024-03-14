@@ -1,5 +1,5 @@
 class Api::V1::FavoritesController < ApplicationController
-  before_action :set_favorite, only: %i[ show update destroy ]
+  before_action :set_favorite, only: %i[show update destroy]
   before_action :authenticate_user!
 
   # GET /api/v1/favorites
@@ -18,7 +18,8 @@ class Api::V1::FavoritesController < ApplicationController
     @favorite = Favorite.new(favorite_params)
 
     if @favorite.save
-      render json: { message: 'Favorite created successfully', data: @favorite }, status: :created, location: api_v1_user_favorite_url(@favorite.user, @favorite)
+      render json: { message: 'Favorite created successfully', data: @favorite }, status: :created,
+             location: api_v1_user_favorite_url(@favorite.user, @favorite)
     else
       render json: { message: 'Failed to create favorite', errors: @favorite.errors }, status: :unprocessable_entity
     end
@@ -40,15 +41,16 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_favorite
-      @favorite = Favorite.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render json: { message: 'Favorite not found' }, status: :not_found
-    end
 
-    # Only allow a list of trusted parameters through.
-    def favorite_params
-      params.require(:favorite).permit(:user_id, :book_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_favorite
+    @favorite = Favorite.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: 'Favorite not found' }, status: :not_found
+  end
+
+  # Only allow a list of trusted parameters through.
+  def favorite_params
+    params.require(:favorite).permit(:user_id, :book_id)
+  end
 end

@@ -1,5 +1,5 @@
 class Api::V1::RentalRequestsController < ApplicationController
-  before_action :set_rental_request, only: %i[ show update destroy ]
+  before_action :set_rental_request, only: %i[show update destroy]
   before_action :authenticate_user!
 
   # GET /api/v1/rental_requests
@@ -40,13 +40,14 @@ class Api::V1::RentalRequestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rental_request
-      @rental_request = RentalRequest.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def rental_request_params
-      params.require(:rental_request).permit(:user_id, :book_id, :start_date, :end_date, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_rental_request
+    @rental_request = RentalRequest.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def rental_request_params
+    params.require(:rental_request).permit(:user_id, :book_id, :start_date, :end_date, :status)
+  end
 end
