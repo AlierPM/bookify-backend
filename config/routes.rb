@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  mount_devise_token_auth_for 'User', at: '/api/v1/auth'
   namespace :api do
     namespace :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth'
+      get 'user_id' => 'get_tokens#show_user_id'
+      get 'csrf_tokens' => 'get_tokens#show_csrf_token'
       resources :rental_requests
       resources :users do
       resources :favorites

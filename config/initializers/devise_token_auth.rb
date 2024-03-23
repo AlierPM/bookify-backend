@@ -65,4 +65,8 @@ DeviseTokenAuth.setup do |config|
   # devise confirmable module. If you want to use devise confirmable module and
   # send email, set it to true. (This is a setting for compatibility)
   # config.send_confirmation_email = true
+
+  # Ensure that the "email" and "password" parameters are permitted
+# Custom parameter permitting can be configured in the initializer
+config.parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
 end
