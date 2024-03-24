@@ -13,6 +13,10 @@ class Api::V1::UsersController < ApplicationController
     render json: @user
   end
 
+  def create
+  end
+  
+
   # PUT /users/:id
   def update
     if @user.update(user_params)
