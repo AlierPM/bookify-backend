@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
@@ -11,12 +9,11 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can [:read, :create, :update, :destroy], Favorite
-      can [:read, :create, :update, :destroy], Rental_Request
+      can %i[read create update destroy], Favorite
+      can %i[read create update destroy], Rental_Request
       can :read, Book
-      cannot [:create, :update, :destroy], Book
-      cannot [:read, :create, :update, :destroy], User
+      cannot %i[create update destroy], Book
+      cannot %i[read create update destroy], User
     end
   end
 end
-
