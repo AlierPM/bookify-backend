@@ -53,4 +53,3 @@ gem 'devise'
 gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
-
