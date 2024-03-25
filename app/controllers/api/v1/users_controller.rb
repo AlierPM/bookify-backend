@@ -13,9 +13,7 @@ class Api::V1::UsersController < ApplicationController
     render json: @user
   end
 
-  def create
-  end
-  
+  def create; end
 
   # PUT /users/:id
   def update
