@@ -17,13 +17,14 @@ class Api::V1::BooksController < ApplicationController
   # POST /api/v1/books
   def create
     @book = Book.new(book_params)
-
+  
     if @book.save
-      render json: @book, status: :created, location: @book
+      render json: @book, status: :created
     else
       render json: @book.errors, status: :unprocessable_entity
     end
   end
+  
 
   # PATCH/PUT /api/v1/books/1
   def update
