@@ -16,5 +16,4 @@ class User < ActiveRecord::Base
   # end
 
   # validates :role, presence: true
-
 end
