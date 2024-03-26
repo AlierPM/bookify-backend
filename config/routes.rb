@@ -5,7 +5,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :rental_requests
       resources :users do
-      resources :favorites
+        member do
+          put 'make_admin'
+        end
+        resources :favorites
       end
       resources :books
     end
