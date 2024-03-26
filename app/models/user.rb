@@ -6,4 +6,14 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :books
+
+  # enum role: [:user, :admin]
+
+  # after_initialize :set_default_role, if: :new_record?
+
+  # def set_default_role
+  #   self.role ||= :user
+  # end
+
+  # validates :role, presence: true
 end

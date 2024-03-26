@@ -9,10 +9,10 @@ require 'faker'
   end
 end
 
-# Get all users
+# # Get all users
 users = User.all
 
-# Create 20 books
+# # Create 20 books
 20.times do
   Book.find_or_create_by!(title: Faker::Book.unique.title) do |book|
     book.author = Faker::Book.author
@@ -25,3 +25,18 @@ users = User.all
     book.user = users.sample
   end
 end
+# Create admin user if in development environment
+if Rails.env.development?
+  admin = User.find_or_create_by(email: 'admin@bookify.com') do |user|
+    user.password = 'bookify2024'
+    user.password_confirmation = 'bookify2024'
+    user.role = :admin
+  end
+
+  # Update the role of the existing user to 'admin'
+  # admin.update(role: :admin)
+end
+
+
+
+

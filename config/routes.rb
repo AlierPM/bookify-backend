@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :rental_requests
       resources :users do
-      resources :favorites
+        resources :favorites
       end
       resources :books
     end
