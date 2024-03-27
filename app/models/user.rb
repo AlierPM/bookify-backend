@@ -15,5 +15,9 @@ class User < ActiveRecord::Base
     self.role ||= :user
   end
 
+  def admin?
+    role == 'admin' || role == 'user'
+  end
+
   validates :role, presence: true
 end

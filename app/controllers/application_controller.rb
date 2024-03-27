@@ -2,8 +2,7 @@ class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   include CanCan::ControllerAdditions
 
-  # Load and authorize abilities
-  before_action :load_and_authorize_resource
+  before_action :set_current_ability
 
   respond_to :json
 
@@ -13,8 +12,7 @@ class ApplicationController < ActionController::API
 
   private
 
-  def load_and_authorize_resource
+  def set_current_ability
     @current_ability ||= Ability.new(current_user)
-    authorize! action_name.to_sym, controller_name.to_sym
   end
 end
