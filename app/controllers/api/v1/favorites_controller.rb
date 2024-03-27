@@ -1,56 +1,41 @@
-class Api::V1::FavoritesController < ApplicationController
-  before_action :set_favorite, only: %i[create show update destroy]
-  before_action :authenticate_user!
+module Api
+  module V1
+    class FavoritesController < ApplicationController
+      before_action :authenticate_user!
+      before_action :set_user
+      before_action :set_book, only: [:create]
 
-  # GET /api/v1/favorites
-  def index
-    @favorites = Favorite.all
-    render json: { message: 'Favorites fetched successfully', data: @favorites }
-  end
+      # Fetch all favorites associated with the current user
+      def index
+        @favorites = current_user.favorites.includes(:book)
+        render json: @favorites, include: [:book]
+      end
 
-  # GET /api/v1/favorites/1
-  def show
-    render json: { message: 'Favorite fetched successfully', data: @favorite }
-  end
+      # Fetch favorites associated with a specific user
+      def user_favorites
+        @user = User.find(params[:user_id])
+        @favorites = @user.favorites.includes(:book)
+        render json: @favorites, include: [:book]
+      end
 
-  # POST /api/v1/favorites
-  def create
-    @favorite = Favorite.new(favorite_params)
+      def create
+        @favorite = current_user.favorites.new(book: @book)
+        if @favorite.save
+          render json: @favorite, include: [:book], status: :created
+        else
+          render json: @favorite.errors, status: :unprocessable_entity
+        end
+      end
 
-    if @favorite.save
-      render json: { message: 'Favorite created successfully', data: @favorite }, status: :created,
-             location: api_v1_user_favorite_url(@favorite.user, @favorite)
-    else
-      render json: { message: 'Failed to create favorite', errors: @favorite.errors }, status: :unprocessable_entity
+      private
+
+      def set_user
+        @user = current_user
+      end
+
+      def set_book
+        @book = Book.find(params[:book_id])
+      end
     end
-  end
-
-  # PATCH/PUT /api/v1/favorites/1
-  def update
-    if @favorite.update(favorite_params)
-      render json: { message: 'Favorite updated successfully', data: @favorite }
-    else
-      render json: { message: 'Failed to update favorite', errors: @favorite.errors }, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /api/v1/favorites/1
-  def destroy
-    @favorite.destroy!
-    render json: { message: 'Favorite deleted successfully' }, status: :ok
-  end
-
-  private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_favorite
-    @favorite = Favorite.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { message: 'Favorite not found' }, status: :not_found
-  end
-
-  # Only allow a list of trusted parameters through.
-  def favorite_params
-    params.require(:favorite).permit(:user_id, :book_id)
   end
 end
