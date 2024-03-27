@@ -12,7 +12,7 @@ class Ability
       can %i[read create update destroy], Favorite
       can %i[read create update destroy], Rental_Request
       can :read, Book
-      cannot %i[create update destroy], Book
+      cannot %i[create update destroy, my_book], Book
       cannot %i[read create update destroy], User
     end
   end
