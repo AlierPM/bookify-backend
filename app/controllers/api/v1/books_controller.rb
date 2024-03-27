@@ -9,13 +9,13 @@ class Api::V1::BooksController < ApplicationController
     render json: @books
   end
 
-   # GET /api/v1/books/my_books
-   def my_books
-      @user = User.find(params[:user_id])
-      @books = @user.books
-      render json: @books
-        rescue ActiveRecord::RecordNotFound
-      render json: { message: 'User not found' }, status: :not_found
+  # GET /api/v1/books/my_books
+  def my_books
+    @user = User.find(params[:user_id])
+    @books = @user.books
+    render json: @books
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: 'User not found' }, status: :not_found
   end
 
   # GET /api/v1/books/1
