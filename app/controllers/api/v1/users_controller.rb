@@ -1,6 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:create]
   before_action :set_user, only: %i[show update destroy]
+  before_action: authorize!, :all
 
   # GET /users
   def index
