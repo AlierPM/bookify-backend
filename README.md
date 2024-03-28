@@ -87,7 +87,7 @@ cd bookify-backend
 
 ### Install
 
-Install the dependencies:
+# Install the dependencies:
 
 - bundle install
 
