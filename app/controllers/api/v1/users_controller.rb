@@ -15,6 +15,7 @@ class Api::V1::UsersController < ApplicationController
 
   # PUT /users/:id
   def update
+    puts "Params received: #{params.inspect}"
     if @user.update(user_params)
       render json: { message: 'User updated successfully', user: @user }
     else
@@ -37,6 +38,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
   end
 end

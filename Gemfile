@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-ruby '3.2.2'
+ruby '3.3.0'
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
@@ -53,3 +54,5 @@ gem 'devise'
 gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
+
+gem 'cancancan'
