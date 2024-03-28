@@ -7,7 +7,10 @@ class User < ActiveRecord::Base
 
   has_many :books
 
-  enum role: [:user, :admin]
+  # enum role: [:user, :admin]
+  def self.roles
+    ['admin', 'user']
+  end
 
   after_initialize :set_default_role, if: :new_record?
 
@@ -16,6 +19,6 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    role == 'admin' || role == 'user'
+    role == 'admin'
   end
 end
