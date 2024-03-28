@@ -36,7 +36,12 @@ class Api::V1::RentalRequestsController < ApplicationController
 
   # DELETE /api/v1/rental_requests/1
   def destroy
-    @rental_request.destroy!
+    begin
+      @rental_request.destroy!
+      render json: { message: 'Rental request deleted successfully' }
+    rescue StandardError => e
+      render json: { error: e.message }, status: :unprocessable_entity
+    end
   end
 
   private
