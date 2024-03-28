@@ -1,4 +1,4 @@
-<h2 align="center"><b><i>Bookkify-backend</i></b></h2>
+<h2 align="center"><b><i>Bookify-backend</i></b></h2>
 
 <a name="readme-top"></a>
 
@@ -84,7 +84,6 @@ Clone this repository to your desired folder:
   git clone https://github.com/AlierPM/bookify-backend
 
 ```
-
 ### Install
 
 Install the dependencies:
