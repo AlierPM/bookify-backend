@@ -144,6 +144,8 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.16.2-x64-mingw-ucrt)
       racc (~> 1.4)
+    nokogiri (1.16.2-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.24.0)
     parser (3.3.0.5)
@@ -237,6 +239,7 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
@@ -253,7 +256,6 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-
    ruby 3.3.0p0
 
 BUNDLED WITH
