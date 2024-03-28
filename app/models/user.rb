@@ -8,12 +8,17 @@ class User < ActiveRecord::Base
   has_many :books
 
   # enum role: [:user, :admin]
+  def self.roles
+    %w[admin user]
+  end
 
-  # after_initialize :set_default_role, if: :new_record?
+  after_initialize :set_default_role, if: :new_record?
 
-  # def set_default_role
-  #   self.role ||= :user
-  # end
+  def set_default_role
+    self.role ||= :user
+  end
 
-  # validates :role, presence: true
+  def admin?
+    role == 'admin'
+  end
 end
