@@ -80,8 +80,8 @@ In order to run this project you need:
 Clone this repository to your desired folder:
 
 ```
-  cd my-folder
-  git clone https://github.com/AlierPM/bookify-backend
+git clone https://github.com/AlierPM/bookify-backend
+cd bookify-backend
 
 ```
 
@@ -89,7 +89,7 @@ Clone this repository to your desired folder:
 
 Install the dependencies:
 
-- gem install
+- bundle install
 
 - yarn install/npm install
 
@@ -105,7 +105,6 @@ Create database:
 To run the server:
 
 ```
- rails assets:precompile
  
  rails server
 
@@ -113,14 +112,10 @@ To run the server:
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Run tests
+Front end is available at [bookify front end](https://github.com/AlierPM/bookify-frontend)
 
-To run tests, run the following command:
 
- ```
- rspec spec/
 
- ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -132,14 +127,14 @@ To run tests, run the following command:
 - GitHub: [@the-faizmohammad](https://github.com/the-faizmohammad)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/faiz-mohammad-967354142/)
 
-## 👥 Authors <a name="authors"></a>
+
+
 
 👤 **Alier Philip**
 
 - GitHub: [@AlierPM](https://github.com/AlierPM)
 - Twitter: [Twitter](https://twitter.com/AlierPM)
 
-## 👥 Authors <a name="authors"></a>
 
 👤 **Karan Joshi**
 
@@ -148,14 +143,12 @@ To run tests, run the following command:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 👥 Authors <a name="authors"></a>
 
 👤 **Omet Omeni**
 
 - GitHub: [@ometman](https://github.com/ometman)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/ometman/)
 
-## 👥 Authors <a name="authors"></a>
 
 👤 **Afimia Fidelis Izebiafe**
 
@@ -165,7 +158,7 @@ To run tests, run the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Add a wireframe**
+- [ ] **Add more better user dashboard**
 - [ ] **Develop the app and add features to  buy a book online.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
