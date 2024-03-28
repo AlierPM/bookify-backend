@@ -31,3 +31,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+# Ignore database configuration file
+
+/config/database.yml
+# .gitignore
+node_modules/
