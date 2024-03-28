@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 ruby '3.3.0'
 
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
 
@@ -39,7 +38,8 @@ gem 'rack-cors'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
-
+  gem 'rspec-rails'
+  gem 'rswag-specs'
   #  Add Faker gem
   gem 'faker'
 end
@@ -54,5 +54,8 @@ gem 'devise'
 gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
+
+gem 'rswag-api'
+gem 'rswag-ui'
 
 gem 'cancancan'
