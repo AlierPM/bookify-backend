@@ -1,7 +1,6 @@
 <h2 align="center"><b><i>Bookkify-backend</i></b></h2>
 
 <a name="readme-top"></a>
-
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
