@@ -1,0 +1,296 @@
+openapi: 3.0.3
+info:
+  title: Bookify API
+  description: API for a books renting app called Bookify
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: user
+    description: Operations about user
+  - name: book
+    description: Operations about books
+  - name: favorite
+    description: Operations about user favorites
+paths:
+  /api/v1/auth/sign_in:
+    post:
+      tags:
+        - user
+      summary: User sign-in
+      description: Authenticate user and obtain access token
+      operationId: signInUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInRequest'
+      responses:
+        '200':
+          description: Sign-in successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+        '401':
+          description: Unauthorized
+
+  /api/v1/auth/sign_up:
+    post:
+      tags:
+        - user
+      summary: User sign-up
+      description: Register a new user account
+      operationId: signUpUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpRequest'
+      responses:
+        '201':
+          description: Sign-up successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignUpResponse'
+        '422':
+          description: Unprocessable Entity
+
+  /api/v1/auth/sign_out:
+    delete:
+      tags:
+        - user
+      summary: User sign-out
+      description: Invalidate the current access token
+      operationId: signOutUser
+      responses:
+        '200':
+          description: Sign-out successful
+        '401':
+          description: Unauthorized
+
+  /api/v1/books:
+    get:
+      tags:
+        - book
+      summary: Get all books
+      description: Retrieve a list of all available books
+      operationId: getAllBooks
+      responses:
+        '200':
+          description: List of books retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+
+  /api/v1/books/{id}:
+    get:
+      tags:
+        - book
+      summary: Get a book by ID
+      description: Retrieve detailed information about a specific book
+      operationId: getBookById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the book to retrieve
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Book details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '404':
+          description: Book not found
+
+  /api/v1/favorites:
+    get:
+      tags:
+        - favorite
+      summary: Get user's favorite books
+      description: Retrieve a list of user's favorite books
+      operationId: getUserFavorites
+      responses:
+        '200':
+          description: List of user's favorite books retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+
+    post:
+      tags:
+        - favorite
+      summary: Add a book to user's favorites
+      description: Add a book to user's list of favorite books
+      operationId: addBookToFavorites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavoriteRequest'
+      responses:
+        '201':
+          description: Book added to user's favorites successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Favorite'
+        '404':
+          description: Book not found
+
+components:
+  schemas:
+    SignInRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          example: password123
+      required:
+        - email
+        - password
+
+    SignUpRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          example: password123
+        password_confirmation:
+          type: string
+          format: password
+          example: password123
+      required:
+        - email
+        - password
+        - password_confirmation
+
+    SignUpResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Unique identifier for the user
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-03-28T12:00:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2024-03-28T12:00:00Z'
+
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          example: 3600
+          description: Expiry time in seconds
+
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Unique identifier for the book
+        title:
+          type: string
+          example: To Kill a Mockingbird
+        author:
+          type: string
+          example: Harper Lee
+        genre:
+          type: string
+          example: Fiction
+        description:
+          type: string
+          example: A novel about the injustices of racial inequality in America.
+        cover_image_url:
+          type: string
+          format: uri
+          example: https://example.com/cover.jpg
+        rental_price:
+          type: number
+          format: float
+          example: 5.99
+        available_for_rent:
+          type: boolean
+          example: true
+        condition:
+          type: string
+          example: New
+        user_id:
+          type: integer
+          example: 1
+          description: ID of the user who listed the book
+
+    FavoriteRequest:
+      type: object
+      properties:
+        book_id:
+          type: integer
+          example: 1
+          description: ID of the book to add to favorites
+      required:
+        - book_id
+
+    Favorite:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Unique identifier for the favorite entry
+        user_id:
+          type: integer
+          example: 1
+          description: ID of the user who favorited the book
+        book_id:
+          type: integer
+          example: 1
+          description: ID of the favorited book
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-03-28T12:00:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2024-03-28T12:00:00Z'
