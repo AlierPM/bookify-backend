@@ -1,12 +1,3 @@
-GIT
-  remote: https://github.com/lynndylanhurley/devise_token_auth
-  revision: 6b0659f18c678b319913d0fb053e96aa555857aa
-  specs:
-    devise_token_auth (1.2.2)
-      bcrypt (~> 3.0)
-      devise (> 3.5.2, < 5)
-      rails (>= 4.2.0, < 7.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -88,12 +79,10 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     base64 (0.2.0)
-    bcrypt (3.1.20)
     bigdecimal (3.1.6)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     builder (3.2.4)
-    cancancan (3.5.0)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -110,8 +99,6 @@ GEM
     diff-lcs (1.5.1)
     drb (2.2.1)
     erubi (1.12.0)
-    faker (3.2.3)
-      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.4)
@@ -164,8 +151,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.9.1)
-    rack-cors (2.0.2)
-      rack (>= 2.0.0)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -202,11 +187,9 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
-    rainbow (3.1.1)
     rake (13.1.0)
     rdoc (6.6.2)
       psych (>= 4.0.0)
-    regexp_parser (2.9.0)
     reline (0.4.3)
       io-console (~> 0.5)
     responders (3.1.1)
@@ -260,11 +243,6 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2024.1)
-      tzinfo (>= 1.0.0)
-    unicode-display_width (2.5.0)
-    warden (1.2.9)
-      rack (>= 2.0.9)
     webrick (1.8.1)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -277,14 +255,9 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  cancancan
   debug
-  devise
-  devise_token_auth!
-  faker
   pg (~> 1.1)
   puma (>= 5.0)
-  rack-cors
   rails (~> 7.1.3, >= 7.1.3.2)
   rspec-rails
   rswag-api
