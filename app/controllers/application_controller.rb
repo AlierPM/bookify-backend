@@ -7,26 +7,26 @@ class ApplicationController < ActionController::API
 
   respond_to :json
 
-  rescue_from CanCan::AccessDenied do |exception|
+  rescue_from CanCan::AccessDenied do |_exception|
     render json: { error: 'Access denied' }, status: :forbidden
   end
 
   def user?
-    current_user && current_user.user?
+    current_user&.user?
   end
 
   def admin?
-    current_user && current_user.admin?
+    current_user&.admin?
   end
 
   private
 
   def set_current_ability
-    @current_ability ||= Ability.new(current_user)
+    @set_current_ability ||= Ability.new(current_user)
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation, :role])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :role, :password])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name email password password_confirmation role])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name role password])
   end
 end

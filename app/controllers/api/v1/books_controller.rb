@@ -45,7 +45,6 @@ class Api::V1::BooksController < ApplicationController
 
   # DELETE /api/v1/books/1
   def destroy
-
     @book.destroy!
   end
 
