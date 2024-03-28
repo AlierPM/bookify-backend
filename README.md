@@ -84,8 +84,6 @@ Clone this repository to your desired folder:
   git clone https://github.com/AlierPM/bookify-backend
 
 ```
-
-
 ### Install
 
 Install the dependencies:
