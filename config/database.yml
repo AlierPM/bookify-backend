@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: 2580
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: bookify_backend_development
+
+test:
+  <<: *default
+  database: bookify_backend_test
+
+production:
+  <<: *default
+  database: bookify_backend_production
+  username: bookify_backend
+  password: <%= ENV["bookify_backend_DATABASE_PASSWORD"] %>
